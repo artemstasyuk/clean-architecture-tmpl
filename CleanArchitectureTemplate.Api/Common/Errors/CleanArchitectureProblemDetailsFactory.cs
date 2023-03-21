@@ -8,11 +8,11 @@ using Microsoft.Extensions.Options;
 
 namespace CleanArchitectureTemplate.Api.Common.Errors
 {
-    public class KittyStoreProblemDetailsFactory : ProblemDetailsFactory
+    public class CleanArchitectureProblemDetailFactory : ProblemDetailsFactory
     {
         private readonly ApiBehaviorOptions _options;
 
-        public KittyStoreProblemDetailsFactory(IOptions<ApiBehaviorOptions> options)
+        public CleanArchitectureProblemDetailFactory(IOptions<ApiBehaviorOptions> options)
         {
             _options = options?.Value ?? throw new ArgumentNullException(nameof(options));
         }

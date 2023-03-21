@@ -6,7 +6,6 @@ using CleanArchitectureTemplate.Application.Common.Interfaces.Persistence;
 using CleanArchitecutreTemplate.Domain.Common.Errors;
 using CleanArchitecutreTemplate.Domain.UserAggregate;
 using CleanArchitecutreTemplate.Domain.UserAggregate.Enums;
-using CleanArchitecutreTemplate.Domain.UserAggregate.ValueObjects;
 using ErrorOr;
 using MediatR;
 
@@ -32,7 +31,7 @@ namespace CleanArchitectureTemplate.Application.Authentication.Commands.Register
             //Create user and add to db
             CreatePasswordHash(command.Password, out byte[] passwordHash, out byte[] passwordSalt);
             var user = User.Create(command.FirstName, command.LastName, command.Email, 
-                passwordHash, passwordSalt, Balance.Create(Currency.Dollar, 0), Role.Customer);
+                passwordHash, passwordSalt, Role.Customer);
             await _userRepository.AddUserAsync(user);
         
             //Jwt token generate

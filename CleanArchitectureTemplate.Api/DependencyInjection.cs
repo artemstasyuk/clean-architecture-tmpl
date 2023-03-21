@@ -31,7 +31,7 @@ namespace CleanArchitectureTemplate.Api
             });
             services.AddMappings();
             services.AddControllers();
-            services.AddSingleton<ProblemDetailsFactory, KittyStoreProblemDetailsFactory>();
+            services.AddSingleton<ProblemDetailsFactory, CleanArchitectureProblemDetailFactory>();
             return services;
         }
     }

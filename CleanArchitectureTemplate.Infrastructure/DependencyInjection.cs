@@ -12,7 +12,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using StackExchange.Redis;
 
 namespace CleanArchitectureTemplate.Infrastructure
 {
@@ -23,8 +22,7 @@ namespace CleanArchitectureTemplate.Infrastructure
         {
             services
                 .AddAuth(configuration)
-                .AddPersistence(configuration)
-                .AddCache(configuration);
+                .AddPersistence(configuration);
         
             services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
             return services;
@@ -40,13 +38,13 @@ namespace CleanArchitectureTemplate.Infrastructure
         
             return services;
         }
-    
+
         private static IServiceCollection AddAuth(this IServiceCollection services,
             IConfiguration configuration)
         {
             var jwtSettings = new JwtSettings();
             configuration.Bind(JwtSettings.SectionName, jwtSettings);
-        
+
             services.AddSingleton(Options.Create(jwtSettings));
             services.AddSingleton<IJwtTokenGenerator, JwtTokenGenerator>();
 
@@ -63,15 +61,6 @@ namespace CleanArchitectureTemplate.Infrastructure
                         Encoding.UTF8.GetBytes(jwtSettings.Secret))
                 });
 
-            return services;
-        }
-
-        private static IServiceCollection AddCache(this IServiceCollection services,
-            IConfiguration configuration)
-        {
-            services.AddSingleton<IConnectionMultiplexer>
-                (ConnectionMultiplexer.Connect(configuration.GetConnectionString("RedisConnection")));
-        
             return services;
         }
     }

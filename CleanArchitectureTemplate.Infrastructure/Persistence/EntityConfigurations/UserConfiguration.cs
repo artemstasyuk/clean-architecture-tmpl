@@ -5,7 +5,6 @@ using CleanArchitecutreTemplate.Domain.UserAggregate.Enums;
 using CleanArchitecutreTemplate.Domain.UserAggregate.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Newtonsoft.Json;
 
 namespace CleanArchitectureTemplate.Infrastructure.Persistence.EntityConfigurations
 {
@@ -24,11 +23,6 @@ namespace CleanArchitectureTemplate.Infrastructure.Persistence.EntityConfigurati
                     value => new UserId(value))
                 .IsRequired();
 
-            builder.Property(e => e.Balance)
-                .HasConversion(
-                    v => JsonConvert.SerializeObject(v),
-                    v => JsonConvert.DeserializeObject<Balance>(v));
-            
             builder.Property(e => e.Role)
                 .HasConversion(
                     v => v.ToString(),
@@ -54,11 +48,11 @@ namespace CleanArchitectureTemplate.Infrastructure.Persistence.EntityConfigurati
         
             var users = new List<User>()
             {
-                User.Create("Jorge", "Admin", "admin123@gmail.com", adminPasswordHash, adminPasswordSalt,
-                    Balance.Create(Currency.Dollar, 1000), Role.Admin), // Admin (password = secret123)
+                User.Create("Jorge", "Admin", "admin123@gmail.com", adminPasswordHash, adminPasswordSalt
+                    , Role.Admin), // Admin (password = secret123)
 
-                User.Create("Don", "Test Customer", "1v2goog@gmail.com", passwordHash, passwordSalt,
-                    Balance.Create(Currency.Dollar, 500), Role.Customer), // Test customer (password = simple)
+                User.Create("Don", "Test Customer", "1v2goog@gmail.com", passwordHash, passwordSalt
+                    , Role.Customer), // Test customer (password = simple)
             };
         
             void CreateTestPasswordHash(string password, out byte[] hash, out byte[] salt)

@@ -16,7 +16,6 @@ namespace CleanArchitecutreTemplate.Domain.UserAggregate
     
         public byte[] PasswordSalt { get;}
     
-        public Balance Balance { get; private set; }
     
         public Role Role { get; private set;}
 
@@ -24,8 +23,8 @@ namespace CleanArchitecutreTemplate.Domain.UserAggregate
     
         public DateTime UpdatedDateTime { get; private set;}
 
-        public User(UserId id, string firstName, string lastName, string email, byte[] passwordHash, byte[] passwordSalt, 
-            Balance balance, Role role, DateTime createdDateTime, DateTime updatedDateTime) : base(id)
+        public User(UserId id, string firstName, string lastName, string email, byte[] passwordHash, byte[] passwordSalt
+            , Role role, DateTime createdDateTime, DateTime updatedDateTime) : base(id)
         {
             FirstName = firstName;
             LastName = lastName;
@@ -34,13 +33,11 @@ namespace CleanArchitecutreTemplate.Domain.UserAggregate
             PasswordSalt = passwordSalt;
             CreatedDateTime = createdDateTime;
             UpdatedDateTime = updatedDateTime;
-            Balance = balance;
             Role = role;
         }
     
-        public static User Create(string firstName, string lastName, string email, byte[] passwordHash, byte[] passwordSalt, 
-            Balance balance, Role role) =>
-            new(UserId.CreateUnique(), firstName, lastName, email, passwordHash, passwordSalt, balance, role,
+        public static User Create(string firstName, string lastName, string email, byte[] passwordHash, byte[] passwordSalt,Role role) =>
+            new(UserId.CreateUnique(), firstName, lastName, email, passwordHash, passwordSalt, role,
                 DateTime.UtcNow, DateTime.UtcNow);
 
         public User Update(string firstName, string lastName, string email,
@@ -49,7 +46,6 @@ namespace CleanArchitecutreTemplate.Domain.UserAggregate
             FirstName = firstName;
             LastName = lastName;
             Email = email;
-            Balance = balance;
             UpdatedDateTime = DateTime.UtcNow;
 
             return this;
