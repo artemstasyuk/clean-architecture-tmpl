@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitectureTemplate.Api", "CleanArchitectureTemplate.Api\CleanArchitectureTemplate.Api.csproj", "{246C7168-11F0-49A7-AD32-6BE95D1428AD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitectureTemplate.API", "CleanArchitectureTemplate\CleanArchitectureTemplate.API.csproj", "{246C7168-11F0-49A7-AD32-6BE95D1428AD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitectureTemplate.Domain", "CleanArchitectureTemplate.Domain\CleanArchitectureTemplate.Domain.csproj", "{7AF60918-4C24-4635-9725-67C954D83518}"
 EndProject

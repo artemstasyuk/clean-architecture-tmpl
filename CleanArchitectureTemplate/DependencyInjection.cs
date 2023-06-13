@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using CleanArchitectureTemplate.Api.Common.Errors;
 using CleanArchitectureTemplate.Api.Common.Mapping;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.OpenApi.Models;
@@ -31,7 +30,6 @@ namespace CleanArchitectureTemplate.Api
             });
             services.AddMappings();
             services.AddControllers();
-            services.AddSingleton<ProblemDetailsFactory, CleanArchitectureProblemDetailFactory>();
             return services;
         }
     }

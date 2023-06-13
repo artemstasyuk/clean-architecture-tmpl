@@ -17,7 +17,7 @@ var app = builder.Build();
     app.UseSwaggerUI(config =>
     {
         config.RoutePrefix = string.Empty;
-        config.SwaggerEndpoint("swagger/v1/swagger.json", "Kitty Store API");
+        config.SwaggerEndpoint("swagger/v1/swagger.json", "your_app_name ");
     });
     
     using var scope = app.Services.CreateScope();
